@@ -38,6 +38,20 @@ function TaskPages() {
     setTasks([...tasks, newTask]);
   }
 
+  function deleteTask(id) {
+    setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
+  }
+
+  function updateTask(id, newTitle, newDuration) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task._id === id
+          ? { ...task, title: newTitle, duration: newDuration }
+          : task
+      )
+    );
+  }
+
   return (
     <div>
       <button onClick={handelVisibility}> Toggle Visibility </button>
@@ -48,7 +62,13 @@ function TaskPages() {
       <Taskform addTask={addTask} />
 
       {loading && <div>loading..</div>}
-      {!loading && isVisibale && <TaskList tasks={tasks} />}
+      {!loading && isVisibale && (
+        <TaskList
+          tasks={tasks}
+          deleteTask={deleteTask}
+          updateTask={updateTask}
+        />
+      )}
     </div>
   );
 }

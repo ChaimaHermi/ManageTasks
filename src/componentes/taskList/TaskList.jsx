@@ -9,7 +9,8 @@ function TaskList(props) {
           id={task._id}
           title={task.title}
           duration={task.duration}
-          deleteTask={props.deleteTask}
+          deleteTask={() => props.deleteTask(task._id)}
+          updateTask={props.updateTask}
         />
       ))}
     </div>
