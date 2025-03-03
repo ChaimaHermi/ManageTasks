@@ -11,8 +11,13 @@
 
 .task span {
     padding-right: 10px;
+    display: flex;
+    align-items: center;
+
+
 }
 
 .actions {
-    color: blue;
+    color: rgb(255, 0, 200);
+    background-color: azure;
 }

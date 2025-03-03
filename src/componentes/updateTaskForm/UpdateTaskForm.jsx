@@ -6,7 +6,7 @@ function Taskform(props) {
   function handleSubmit(e) {
     e.preventDefault();
     props.updateTask(props.id, newTitle, newDuration);
-    props.setIsUpdate(false);
+    props.setIsUpdateMode(false);
   }
   return (
     <div className="form">

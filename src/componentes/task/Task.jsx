@@ -1,20 +1,23 @@
 import "./Task.css";
 import React, { useState } from "react";
 import UpdateTaskform from "../../componentes/updateTaskForm/UpdateTaskForm";
+import { Link } from "react-router-dom";
 
 function Task(props) {
-  const [isUpdate, setIsUpdate] = useState(false);
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
 
   return (
-    <div className="task" style={{ backgroundColor: "red" }}>
-      {!isUpdate ? (
+    <div className="task" style={{ backgroundColor: "grey" }}>
+      {!isUpdateMode ? (
         <>
-          <div className="title">{props.title}</div>
+          <Link to={`/tasks/${props.id}`}>
+            <div className="title">{props.title}</div>
+          </Link>
           <div className="title">{props.duration}</div>
           {props.details && <div className="title">{props.details.level}</div>}
           <div className="actions">
             <span onClick={() => props.deleteTask(props.id)}>Delete</span>
-            <span onClick={() => setIsUpdate(true)}>Update</span>
+            <span onClick={() => setIsUpdateMode(true)}>Update</span>
           </div>
         </>
       ) : (
@@ -22,7 +25,7 @@ function Task(props) {
           id={props.id}
           title={props.title}
           duration={props.duration}
-          setIsUpdate={setIsUpdate}
+          setIsUpdateMode={setIsUpdateMode}
           updateTask={props.updateTask}
         />
       )}
